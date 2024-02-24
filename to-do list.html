@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List</title>
+    <link rel="stylesheet" type="text/css" href="to-do list.css">
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One&family=Cutive+Mono&family=Young+Serif&display=swap"
+        rel="stylesheet">
+</head>
+
+<style>
+    body {
+        font-family: 'Chau Philomene One', sans-serif;
+        background-color: #f5f5f5;
+        text-align: center;
+    }
+
+    h1 {
+        font-family: 'Cutive Mono', monospace;
+        color: #4d4d4d;
+    }
+
+    #input {
+        font-family: 'Courier New';
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #4d4d4d;
+    }
+
+    #add {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #4d4d4d;
+    }
+
+    #list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    button {
+        margin-left: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #4d4d4d;
+        background-color: #fff;
+    }
+
+    button:hover {
+        background-color: #cbadad;
+    }
+</style>
+
+<body>
+    <h1>To-Do List</h1>
+    <!--Input to-do list-->
+    <input type="text" id="input" placeholder="Buy Groceries">
+    <!--Add to-do list-->
+    <button type="button" id="add" onclick="addList()">Add</button>
+    <!--Display to-do list-->
+    <ul id="list">
+
+    </ul>
+
+</body>
+
+<script>
+    function addList() {
+        //get input value
+        var input = document.getElementById('input').value;
+        //get unordered list element
+        var ul = document.getElementById('list');
+        //create list item element (from ul)
+        var li = document.createElement('li');
+
+
+        //create checkbox element
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        //handle checkbox change event
+        checkbox.onchange = function () {
+            if (checkbox.checked) {
+                //add line-through style to the list item if checkbox checked
+                li.style.textDecoration = 'line-through';
+            } else {
+                //do nothing
+                li.style.textDecoration = 'none';
+            }
+        }
+
+        //append checkbox and input to list item (li)
+        li.appendChild(checkbox);
+        //add to-do list inside text node to list item (li)
+        li.appendChild(document.createTextNode(input));
+        //append list item to unordered list (ul)
+        ul.appendChild(li);
+
+        //clear input field
+        document.getElementById('input').value = '';
+
+    }
+
+</script>
+
+</html>
